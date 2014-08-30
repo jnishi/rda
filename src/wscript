@@ -1,0 +1,23 @@
+def configre(conf):
+    conf.check_cxx(header_name = 'vector')
+
+def build(bld):
+    bld.shlib(
+        source  = ['RDA.cpp'],
+        target = 'rda',
+        name = 'rda',
+        includes = '.')
+    
+    bld.program(
+        features = 'gtest',
+        source = ['RDATest.cpp'],
+        use = 'rda',
+        includes = '.',
+        target = 'test')
+
+    bld.program(
+        features = 'main',
+        source = ['main.cpp'],
+        use = 'rda',
+        includes = '.',
+        target = 'main')
